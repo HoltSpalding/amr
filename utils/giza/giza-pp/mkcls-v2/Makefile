@@ -6,6 +6,7 @@ OBJS = GDAOptimization.o HCOptimization.o Problem.o \
             mkcls.o
 
 #CFLAGS = -Wall -W -DNDEBUG -O3 -funroll-loops
+CFLAGS_GLOBAL = -std=c++11
 CFLAGS = $(CFLAGS_GLOBAL) -Wall -W -DNDEBUG -O3 -funroll-loops
 
 

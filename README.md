@@ -31,13 +31,25 @@ The output files will be in `experiments/parse/logs`. To see the full set of opt
 
 ## Preparing the data (required only for training and testing)
 
-To re-create our experiments, obtain the AMR Bank release 1.0 ([LDC2014T12](https://catalog.ldc.upenn.edu/LDC2014T12)) form LDC. Extract the corpus to the directory `corpus/amr_anno_1.0`. 
+To re-create our experiments, obtain the AMR Bank release 1.0 ([LDC2014T12](https://catalog.ldc.upenn.edu/LDC2014T12)) form LDC. Extract the corpus to the directory `corpus/amr_anno_1.0` and place this folder in your git root directory. 
 
 Then run the following:
 
 - Compile the code: `ant dist`
-- Prepare the environment: `utils/config.sh`
-- Prepare the data: `utils/prepdata-ldc.sh` 
+- Alias `python` command to ensure shell commands are executed using Python 2.7:
+ `alias python=python2.7`
+ `source ~/.bashrc`
+ `python --version`
+- Prepare the environment: `./config.sh`
+- Prepare the data: `./prepdata-ldc.sh` 
+- Disable alias in current shell:
+	`unalias python`
+
+## Training/Testing
+
+Training and testing experiments are written according to the conventions established by the [Cornell Semantic Parsing Framework's](https://github.com/clic-lab/spf) experiments platform ([Explat](https://github.com/clic-lab/spf#running-example-experiments)). I suggest you read through the documentation for SPF and look through the .exp files in this repo's `experiments` folder in order to get a sense of how to create a new experiment. Training on even a small amount of data demands quite a bit of memory (hopefully memory usage can be reduced once the bottleneck is identified). Check your system monitor to determine the amount of RAM and swap memory available to you and ensure you are setting your JVM heap size accordingly (the `Xmx` parameter specifies the maximum memory allocation pool for a JVM, while `Xms` specifies the initial memory allocation pool). If you recieve an `OutOfMemory` error, reduce your batch size or try using a cloud service with more available memory to train your model. I required 256Gb of RAM to train a model on all of the AMR Bank release 1.0 data in reasonable time, although you could definately use less memory. 
+
+
 
 ## Attribution
 
